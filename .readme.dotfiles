@@ -1,0 +1,10 @@
+
+# To initialize:
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/'
+
+git init --bare $HOME/.dotfiles
+
+dotfiles remote add origin git@github.com:varesa/dotfiles.git
+dotfiles pull origin master
+

@@ -1,5 +1,10 @@
 # .bashrc
 
+if [ ! -z "$PS1" ]
+then
+    type zsh >/dev/null && exec zsh "$@"
+fi
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc

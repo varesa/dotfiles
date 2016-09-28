@@ -8,3 +8,12 @@ git init --bare $HOME/.dotfiles
 dotfiles remote add origin git@github.com:varesa/dotfiles.git
 dotfiles pull origin master
 
+# Related:
+# - gnome-terminal
+#   * preferences
+#    > no menubar
+#    > no accelerator key
+#    > no shortcuts
+#   * new profile
+#    > run tmux
+#    > no scrollbar

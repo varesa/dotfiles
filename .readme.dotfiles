@@ -5,6 +5,7 @@ sudo yum install -y zsh tmux vim-enhanced
 # To initialize:
 
 mv .bashrc .bashrc_orig
+mv .bash_profile .bash_profile_orig
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/'
 

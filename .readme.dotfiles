@@ -10,6 +10,10 @@ dotfiles config status.showuntrackedfiles no
 dotfiles remote add origin git@github.com:varesa/dotfiles.git
 dotfiles pull origin master
 
+# Optional
+
+sudo yum install -y zsh tmux
+
 # Related:
 # - gnome-terminal
 #   * preferences

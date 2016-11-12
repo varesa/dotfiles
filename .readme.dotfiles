@@ -15,6 +15,8 @@ dotfiles config status.showuntrackedfiles no
 dotfiles remote add origin git@github.com:varesa/dotfiles.git
 dotfiles pull origin master
 
+dotfiles config status.showuntrackedfiles no
+
 # Related:
 # - gnome-terminal
 #   * preferences

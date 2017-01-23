@@ -11,6 +11,7 @@ general {
         interval = 5
 }
 
+order += cpu_usage
 #order += "ipv6"
 order += "disk /"
 #order += "run_watch DHCP"
@@ -20,6 +21,11 @@ order += "disk /"
 #order += "battery 0"
 order += "load"
 order += "tztime local"
+
+
+cpu_usage {
+    format = "CPU: %usage"
+}
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -49,9 +55,9 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "load: %1min"
 }
 
 disk "/" {
-        format = "%avail"
+        format = "disk /: %avail"
 }

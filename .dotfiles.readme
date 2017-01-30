@@ -1,4 +1,4 @@
-# Optional
+# Optional (IMPORTANT: run sudo first unless NOPASSWD, e.g. sudo whoami)
 
 sudo yum install -y zsh tmux vim-enhanced git
 

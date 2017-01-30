@@ -1,6 +1,6 @@
 # Optional
 
-sudo yum install -y zsh tmux vim-enhanced
+sudo yum install -y zsh tmux vim-enhanced git
 
 # To initialize:
 

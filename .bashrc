@@ -2,7 +2,10 @@
 
 if [ ! -z "$PS1" ]
 then
-    type zsh >/dev/null && exec zsh "$@"
+    if [ -z "$(uname -r | grep el5)"]
+    then
+        type zsh >/dev/null && exec zsh "$@"
+    fi
 fi
 
 # Source global definitions

@@ -86,4 +86,9 @@ unsetopt share_history
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. ~/.aliases
+source ~/.aliases
+
+if [ -f ~/.localrc ]
+then
+    source ~/.localrc
+fi

@@ -24,5 +24,5 @@ dotfiles config status.showuntrackedfiles no
 #    > no accelerator key
 #    > no shortcuts
 #   * new profile
-#    > run tmux
+#    > run sh -c "tmux && zsh"
 #    > no scrollbar

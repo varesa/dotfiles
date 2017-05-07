@@ -9,3 +9,13 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gd='git diff'
+
+function sharefile {
+    RHOST="nginx.tre.esav.fi"
+    RPATH="/var/www/share"
+    UUID=$(uuidgen)
+
+    ssh $RHOST "mkdir $RPATH/$USER/$UUID"
+    scp $1 $RHOST:$RPATH/$USER/$UUID/
+    echo "https://share.esav.fi/$USER/$UUID/$1"
+}

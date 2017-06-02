@@ -19,3 +19,9 @@ function sharefile {
     scp $1 $RHOST:$RPATH/$USER/$UUID/
     echo "https://share.esav.fi/$USER/$UUID/$1"
 }
+
+function imgurit {
+    FPATH="Pictures"
+    file=$(ls -t $FPATH/ | head -1)
+    imgur-uploader "$FPATH/$file"
+}

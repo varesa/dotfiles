@@ -92,3 +92,18 @@ if [ -f ~/.localrc ]
 then
     source ~/.localrc
 fi
+
+if mount | grep " on $(echo ~) type nfs"
+then
+
+    user=$(whoami)
+
+    if [ ! -d /home/local/$user ]
+    then
+        echo "Home on network drive and /home/local/$user missing. Creating (sudo required)"
+        sudo mkdir -p /home/local/$user
+        sudo chown $user: /home/local/$user
+        echo "Created."
+    fi
+
+fi

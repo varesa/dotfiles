@@ -5,10 +5,14 @@ alias svi='sudo HOME=$(realpath ~esa) vim'
 export EDITOR='vim'
 alias vipaste='f=$(mktemp) && vi $f && fpaste $f && rm -f $f'
 
+alias sshagent='eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa'
+
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gd='git diff'
+
+alias r='exec zsh'
 
 function sharefile {
     RHOST="nginx.tre.esav.fi"
@@ -21,7 +25,7 @@ function sharefile {
 }
 
 function imgurit {
-    FPATH="Pictures"
-    file=$(ls -t $FPATH/ | head -1)
-    imgur-uploader "$FPATH/$file"
+    IMAGES_PATH="Pictures"
+    file=$(ls -t $IMAGES_PATH/ | head -1)
+    imgur-uploader "$IMAGES_PATH/$file"
 }

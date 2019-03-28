@@ -1,11 +1,12 @@
 # .bashrc
 
-if [ ! -z "$PS1" ]
+if [ -n "$PS1" ] && [ -z "$ZSH" ]; 
 then
-    if [ -z "$(uname -r | grep el5)"]
+    if [ -z "$(uname -r | grep el5)" ]
     then
         type zsh >/dev/null && exec zsh "$@"
     fi
+  echo ""
 fi
 
 # Source global definitions

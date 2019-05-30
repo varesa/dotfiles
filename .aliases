@@ -29,3 +29,16 @@ function imgurit {
     file=$(ls -t $IMAGES_PATH/ | head -1)
     imgur-uploader "$IMAGES_PATH/$file"
 }
+
+function eyaml {
+    if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet/control-repo"; then
+        PUBKEY="/home/esav.fi/esa/workspace/puppet/control-repo/keys/public_key.pkcs7.pem"
+    fi
+
+    echo "Using pubkey $PUBKEY"
+
+    if [[ "$1" == "edit" || "$1" == "encrypt" ]]; then
+        oper=$1; shift
+        ~/bin/eyaml $oper --pkcs7-public-key=$PUBKEY "$@"
+    fi
+}

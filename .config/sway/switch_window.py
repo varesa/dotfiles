@@ -35,6 +35,8 @@ for output in tree['nodes']:
 
         for container in workspace['nodes']:
             windows = windows + handle_container(container)
+        for container in workspace['floating_nodes']:
+            windows = windows + handle_container(container)
 
 # Format the list of windows for dmenu/rofi
 windows_string = '\n'.join([f"<{app_id}> {app_name} --- {app_title}" for app_id, app_name, app_title in windows])

@@ -100,7 +100,7 @@ bindsym XF86AudioPrev exec playerctl previous
     # start your launcher
     bindsym $mod+Shift+d exec $dmenu
     bindsym $mod+d exec $menu
-    bindsym $mod+Tab exec $wmenu
+    bindsym Alt+Tab exec $wmenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

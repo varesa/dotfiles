@@ -4,10 +4,13 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+exec systemctl --user import-environment
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+#set $mod Escape
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -52,12 +55,13 @@ set $locker 'swaylock -f -e -c 111111'
 
 bindsym $mod+g exec $locker
 
-exec swayidle -w \
-    timeout 300 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    timeout 600 "$locker" \
-    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
-    before-sleep "$locker"
+#exec swayidle -w \
+#    timeout 300 'swaymsg "output * dpms off"' \
+#    resume 'swaymsg "output * dpms on"' \
+#    timeout 600 "$locker" \
+#    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+#    before-sleep "$locker"
+
 
 ### Input configuration
 #
@@ -251,8 +255,10 @@ bar {
 }
 
 set $screenshot_region slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+set $screenshot_all grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 bindsym Shift+print exec $screenshot_region
+bindsym print exec $screenshot_all
 
 
 # Application overrides
@@ -264,6 +270,8 @@ no_focus [title="xfce4-notifyd"]
 for_window [title="xfce4-notifyd"] border none, move up 600px
 no_focus [title="TelegramDesktop"]
 for_window [title="TelegramDesktop"] floating enable, border none, move up 600px
+for_window [title="^Steam"] border none
+for_window [title="^Steam - "] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

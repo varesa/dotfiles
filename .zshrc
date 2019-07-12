@@ -86,6 +86,21 @@ unsetopt share_history
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+aws_vault_account() {
+    if [[ -n "$AWS_VAULT" ]]; then
+        ACC="$AWS_VAULT"
+
+        if [[ -n "$AWS_REGION" ]]; then
+            ACC="$ACC/$AWS_REGION"
+        fi
+
+        echo "($ACC) "
+
+    fi
+}
+
+export PROMPT="\$(aws_vault_account)$PROMPT"
+
 source ~/.aliases
 
 if [ -f ~/.localrc ]
@@ -110,3 +125,9 @@ then
     HISTFILE=/home/local/$user/.zsh_history
 
 fi
+
+if [ -n "$DESKTOP_SESSION" -a -z "$SSH_AUTH_SOCK" ]; then
+    eval $(gnome-keyring-daemon --start 2>/dev/null)
+    export SSH_AUTH_SOCK
+fi
+

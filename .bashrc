@@ -1,6 +1,6 @@
 # .bashrc
 
-if [ -n "$PS1" ] && [ -z "$ZSH" ]; 
+if [ -n "$PS1" ]; # && [ -z "$ZSH" ]; 
 then
     if [ -z "$(uname -r | grep el5)" ]
     then

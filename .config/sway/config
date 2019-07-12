@@ -18,11 +18,14 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term gnome-terminal
+
+set $focused_display "$(swaymsg -t get_outputs -p | grep Output | awk '{print NR-1 $s}' | grep focused | cut -c 1)"
+
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $dmenu dmenu_path | dmenu | xargs swaymsg exec --
-set $wmenu "python3 ~/.config/sway/switch_window.py" 
-set $menu "rofi -i -modi drun,run -show drun" 
+set $menu_path dmenu_path | dmenu -m $focused_display | xargs swaymsg exec --
+set $menu_windows "python3 ~/.config/sway/switch_window.py" 
+
 
 ### Output configuration
 #
@@ -102,9 +105,9 @@ bindsym XF86AudioPrev exec playerctl previous
     bindsym $mod+Shift+q kill
 
     # start your launcher
-    bindsym $mod+Shift+d exec $dmenu
-    bindsym $mod+d exec $menu
-    bindsym Alt+Tab exec $wmenu
+    bindsym $mod+Shift+d exec $menu_path
+    bindsym $mod+d exec ~/.config/sway/launch_apps.sh
+    bindsym Alt+Tab exec $menu_windows
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -146,8 +149,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # Workspaces:
 #
 
-    bindsym $mod+section       exec swaymsg                   workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu)
-    bindsym $mod+Shift+section exec swaymsg move container to workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu)
+    bindsym $mod+section       exec swaymsg                   workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
+    bindsym $mod+Shift+section exec swaymsg move container to workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
 
     # switch to workspace
     bindsym $mod+1 workspace 1
@@ -267,9 +270,7 @@ bindsym print exec $screenshot_all
 for_window [title=" - Google Chrome$"] border none
 for_window [title="watch .*/get_opsgenie_alerts.py$"] border none
 no_focus [title="xfce4-notifyd"]
-for_window [title="xfce4-notifyd"] border none, move up 600px
 no_focus [title="TelegramDesktop"]
-for_window [title="TelegramDesktop"] floating enable, border none, move up 600px
 for_window [title="^Steam"] border none
 for_window [title="^Steam - "] floating enable
 

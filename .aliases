@@ -30,6 +30,14 @@ function imgurit {
     imgur-uploader "$IMAGES_PATH/$file"
 }
 
+temp() {
+    directory=$(mktemp -d)
+    cd $directory
+    rm_cmd="rm -rf $directory"
+    echo "Running '$rm_cmd' in 7 days"
+    echo "$rm_cmd" | at "now + 7 days"
+}
+
 function eyaml {
     if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet/control-repo"; then
         PUBKEY="/home/esav.fi/esa/workspace/puppet/control-repo/keys/public_key.pkcs7.pem"

@@ -126,7 +126,7 @@ then
 
 fi
 
-if [ -n "$DESKTOP_SESSION" -a -z "$SSH_AUTH_SOCK" ]; then
+if [ -n "$DESKTOP_SESSION" ]; then
     eval $(gnome-keyring-daemon --start 2>/dev/null)
     export SSH_AUTH_SOCK
 fi

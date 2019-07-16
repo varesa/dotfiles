@@ -279,6 +279,8 @@ exec /usr/libexec/gsd-xsettings
 
 # Polkit authentication/authorization
 exec /usr/libexec/polkit-gnome-authentication-agent-1
+# Keyring
+exec gnome-keyring-daemon --start
 
 include ~/.localsway
 include /usr/local/etc/sway/config.d/*

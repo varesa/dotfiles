@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -86,6 +86,9 @@ unsetopt share_history
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#
+# AWS vault prompt
+
 aws_vault_account() {
     if [[ -n "$AWS_VAULT" ]]; then
         ACC="$AWS_VAULT"
@@ -101,12 +104,32 @@ aws_vault_account() {
 
 export PROMPT="\$(aws_vault_account)$PROMPT"
 
+#
+# Try to figure out the best editor
+
+if type nvim >/dev/null; then
+	export EDITOR="$(which nvim)"
+elif type vim >/dev/null; then
+	export EDITOR="$(which vim)"
+elif type vi >/dev/null; then
+	export EDITOR="$(which vi)"
+fi
+
+#
+# Common aliases
+
 source ~/.aliases
+
+#
+# Aliases specific to a single host
 
 if [ -f ~/.localrc ]
 then
     source ~/.localrc
 fi
+
+#
+# Create a local home for use if primary home is on a network share
 
 if mount | grep " on $(echo ~) type nfs" >/dev/null
 then
@@ -125,6 +148,9 @@ then
     HISTFILE=/home/local/$user/.zsh_history
 
 fi
+
+#
+# Load up keyring if in a graphical session
 
 if [ -n "$DESKTOP_SESSION" ]; then
     eval $(gnome-keyring-daemon --start 2>/dev/null)

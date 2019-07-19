@@ -8,5 +8,25 @@ set softtabstop=4          " see multiple spaces as tabstops so <BS> does the ri
 set expandtab              " convert tabs to spaces
 set shiftwidth=4           " width for automatic indent
 set autoindent             " indent a new line automatically
-set number                 " add line numbers
 set wildmode=longest,list  " get bash-like tab completions
+
+set number                 " add line numbers
+:highlight LineNr ctermfg=grey
+
+
+"" Vundle
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'airblade/vim-gitgutter'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on  " allows auto-indenting depending on file type
+

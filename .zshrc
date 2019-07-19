@@ -171,6 +171,10 @@ check_dotfiles() {
             echo "Remote changes to dotfiles (need to pull)"
         fi
     fi
+
+    if ! dotfiles status | grep -q "nothing to commit"; then
+        echo "The are uncommitted changes to dotfiles"
+    fi
 }
 
 DOTFILES_UPDATE_FLAG="$(realpath ~/.dotfiles_need_update)"

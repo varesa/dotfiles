@@ -1,6 +1,6 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/'
 
-alias vi='vim'
+alias vi='(type nvim >/dev/null && nvim "$@") || (type vim >/dev/null && vim "$@") || vi "$@"'
 alias svi='sudo HOME=$(realpath ~esa) vim'
 export EDITOR='vim'
 alias vipaste='f=$(mktemp) && vi $f && fpaste $f && rm -f $f'

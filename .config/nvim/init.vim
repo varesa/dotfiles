@@ -11,7 +11,10 @@ set autoindent             " indent a new line automatically
 set wildmode=longest,list  " get bash-like tab completions
 
 set number                 " add line numbers
-:highlight LineNr ctermfg=grey
+highlight LineNr ctermfg=grey
+
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 "" Vundle

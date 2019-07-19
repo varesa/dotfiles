@@ -157,3 +157,29 @@ if [ -n "$DESKTOP_SESSION" ]; then
     export SSH_AUTH_SOCK
 fi
 
+#
+# Check for updates to dotfiles
+check_dotfiles() {
+    branch="$(dotfiles branch | grep \* | cut -d ' ' -f2)"
+    upstream="origin/$branch"
+
+    dotfiles remote update >/dev/null
+    if [[ "$(dotfiles rev-parse $branch)" != "$(dotfiles rev-parse $upstream)" ]]; then
+        if [[ "$(dotfiles rev-parse $upstream)" == "$(dotfiles merge-base $branch $upstream)" ]]; then
+            echo "Local changes to dotfiles (need to push)"
+        else
+            echo "Remote changes to dotfiles (need to pull)"
+        fi
+    fi
+}
+
+DOTFILES_UPDATE_FLAG="$(realpath ~/.dotfiles_need_update)"
+# Check for updates asynchronously in the background
+( test ! -f "$DOTFILES_UPDATE_FLAG" && check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
+# Print to user if an earlier run found something to update
+test -f "$DOTFILES_UPDATE_FLAG" && cat "$DOTFILES_UPDATE_FLAG"
+
+update_dotfiles() {
+    dotfiles pull --ff-only origin
+    test -f "$DOTFILES_UPDATE_FLAG" && rm "$DOTFILES_UPDATE_FLAG"
+}

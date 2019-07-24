@@ -1,3 +1,9 @@
 [submodule ".config/nvim/bundle/Vundle.vim"]
 	path = .config/nvim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule ".config/nvim/bundle/bundle/ctrlp.vim"]
+	path = .config/nvim/bundle/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".config/nvim/bundle/ctrlp.vim"]
+	path = .config/nvim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git

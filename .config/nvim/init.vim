@@ -38,6 +38,7 @@ call vundle#begin('~/.config/nvim/bundle') " and initialize
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'vim-syntastic/syntastic'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end() " All of your Plugins must be added before the following line
 

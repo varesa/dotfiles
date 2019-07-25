@@ -1,0 +1,11 @@
+[Unit]
+Description=swayidle, lock and power off displays
+
+[Service]
+ExecStart=swayidle -w \
+    timeout 300 'swaymsg "output * dpms off"' \
+    timeout 600 'swaylock -f -e -c 111111' \
+    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -e -c 111111'
+

@@ -9,7 +9,7 @@ set expandtab              " convert tabs to spaces
 set shiftwidth=4           " width for automatic indent
 set autoindent             " indent a new line automatically
 set wildmode=longest,list  " get bash-like tab completions
-
+set nowrap                 " do not wrap by default
 set number                 " add line numbers
 highlight LineNr ctermfg=grey
 

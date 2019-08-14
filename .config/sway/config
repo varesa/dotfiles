@@ -152,30 +152,36 @@ bindsym XF86AudioPrev exec playerctl previous
     bindsym $mod+section       exec swaymsg                   workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
     bindsym $mod+Shift+section exec swaymsg move container to workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
 
+    set $workspace exec ~/.config/sway/switch_workspace.sh
+
     # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
+    bindsym $mod+1 $workspace 1
+    bindsym $mod+2 $workspace 2
+    bindsym $mod+3 $workspace 3
+    bindsym $mod+4 $workspace 4
+    bindsym $mod+5 $workspace 5
+    bindsym $mod+6 $workspace 6
+    bindsym $mod+7 $workspace 7
+    bindsym $mod+8 $workspace 8
+    bindsym $mod+9 $workspace 9
+    bindsym $mod+0 $workspace 10
+
+    set $move_to_workspace exec ~/.config/sway/move_to_workspace.sh
     # move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
+    bindsym $mod+Shift+1 $move_to_workspace 1
+    bindsym $mod+Shift+2 $move_to_workspace 2
+    bindsym $mod+Shift+3 $move_to_workspace 3
+    bindsym $mod+Shift+4 $move_to_workspace 4
+    bindsym $mod+Shift+5 $move_to_workspace 5
+    bindsym $mod+Shift+6 $move_to_workspace 6
+    bindsym $mod+Shift+7 $move_to_workspace 7
+    bindsym $mod+Shift+8 $move_to_workspace 8
+    bindsym $mod+Shift+9 $move_to_workspace 9
+    bindsym $mod+Shift+0 $move_to_workspace 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    
+    bindsym $mod+Shift+n exec swaymsg rename workspace to $(dmenu -m $focused_display)
 #
 # Layout stuff:
 #

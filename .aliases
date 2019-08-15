@@ -64,9 +64,9 @@ log() {
     logfile=~/.worklog
     if [ "$1" != "" ]; then
         echo "$(date +%s) $@" >> "$logfile"
-        cat "$logfile" | tail -n 3 | .local/bin/parse_log.py
+        cat "$logfile" | tail -n 3 | ~/.local/bin/parse_log.py
     else
         echo "$(date +%s) viewed log" >> "$logfile"
-        cat "$logfile" | tail -n 15 | .local/bin/parse_log.py
+        cat "$logfile" | tail -n 15 | ~/.local/bin/parse_log.py
     fi
 }

@@ -129,6 +129,13 @@ then
 fi
 
 #
+# Add ~/bin/
+if [ -d ~/bin ]
+then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+#
 # Create a local home for use if primary home is on a network share
 
 if mount | grep " on $(echo ~) type nfs" >/dev/null

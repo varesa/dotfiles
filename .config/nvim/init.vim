@@ -36,7 +36,7 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim  " set the runtime path to include Vun
 call vundle#begin('~/.config/nvim/bundle') " and initialize
 
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'vim-syntastic/syntastic'
+""Plugin 'vim-syntastic/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'w0rp/ale'

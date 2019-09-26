@@ -19,6 +19,13 @@ def format_time(time):
     if time < 60*60:
         minutes = round(time / 60)
         return f"{minutes} minutes"
+    if time < 6*60*60:
+        hours = math.floor(time / 60 / 60)
+        minutes = round((time - hours * 60 * 60) / 60)
+        return f"{hours} hours, {minutes} minutes"
+    if time < 24*60*60:
+        hours = round(time / 60 / 60)
+        return f"{hours} hours"
     return str(time)
 
 

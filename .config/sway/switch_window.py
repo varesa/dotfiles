@@ -41,9 +41,9 @@ for output in tree['nodes']:
 # Format the list of windows for dmenu/rofi
 windows_string = '\n'.join([f"<{app_id}> {app_name} --- {app_title}" for app_id, app_name, app_title in windows])
 
-active_display = subprocess.check_output('~/.config/sway/get_active_display.sh', shell=True)
+active_display = subprocess.check_output('~/.config/sway/get_active_display.sh', shell=True).decode().strip()
 
 # Call rofi and move focus to the selected window
-selection = subprocess.check_output(['rofi', '-dmenu', '-i', '-m', active_display], input=windows_string, universal_newlines=True)
+selection = subprocess.check_output(['rofi', '-dmenu', '-i', '-m', 'XWAYLAND' + active_display], input=windows_string, universal_newlines=True)
 window_id = selection.split(' ')[0][1:-1]
 subprocess.call(['swaymsg', f"[con_id=\"{window_id}\"]", 'focus'])

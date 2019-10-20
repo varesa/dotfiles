@@ -279,6 +279,13 @@ no_focus [title="xfce4-notifyd"]
 no_focus [title="TelegramDesktop"]
 for_window [title="^Steam"] border none
 for_window [title="^Steam - "] floating enable
+for_window [title="^SpeedCrunch"] floating enable
+# Thunderbird
+for_window [title="^Sending Message - "] floating enable
+# Dia, etc.
+for_window [title="^Properties: "] floating enable
+# Firefox
+for_window [title="^Opening "] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

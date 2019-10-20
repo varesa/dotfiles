@@ -181,7 +181,7 @@ bindsym XF86AudioPrev exec playerctl previous
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
     
-    bindsym $mod+Shift+n exec swaymsg rename workspace to $(dmenu -m $focused_display)
+    bindsym $mod+Shift+n exec ~/.config/sway/rename_workspace.sh
 #
 # Layout stuff:
 #

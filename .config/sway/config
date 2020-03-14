@@ -152,6 +152,7 @@ bindsym XF86AudioPrev exec playerctl previous
     bindsym $mod+section       exec swaymsg                   workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
     bindsym $mod+Shift+section exec swaymsg move container to workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
 
+    exec ~/.config/sway/init_workspaces.sh
     set $workspace exec ~/.config/sway/switch_workspace.sh
 
     # switch to workspace

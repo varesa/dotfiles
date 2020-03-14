@@ -42,8 +42,8 @@ temp() {
 }
 
 function eyaml {
-    if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet/control-repo"; then
-        PUBKEY="/home/esav.fi/esa/workspace/puppet/control-repo/keys/public_key.pkcs7.pem"
+    if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet/hiera"; then
+        PUBKEY="/home/esav.fi/esa/workspace/puppet/hiera/keys/public_key.pkcs7.pem"
     fi
 
     if echo $PWD | grep -q "^/home/esa/repos/puppet/ppadmin/"; then

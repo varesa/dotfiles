@@ -70,3 +70,7 @@ log() {
         cat "$logfile" | tail -n 15 | ~/.local/bin/parse_log.py
     fi
 }
+
+alias kc=kubectl
+alias kctx=kubectl-ctx
+alias kns=kubectl-ns

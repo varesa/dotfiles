@@ -107,7 +107,7 @@ bindsym XF86AudioPrev exec playerctl previous
     # start your launcher
     bindsym $mod+Shift+d exec $menu_path
     bindsym $mod+d exec ~/.config/sway/launch_apps.sh
-    bindsym Alt+Tab exec $menu_windows
+    bindsym Alt+Tab exec ~/.config/sway/alttab.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -287,6 +287,7 @@ for_window [title="^Sending Message - "] floating enable
 for_window [title="^Properties: "] floating enable
 # Firefox
 for_window [title="^Opening "] floating enable
+for_window [title="^Firefox - Choose "] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

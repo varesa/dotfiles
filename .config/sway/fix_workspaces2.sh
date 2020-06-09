@@ -1,5 +1,8 @@
 #!/bin/bash
-set -euo pipefail
+
+# If operating on a single ws fails for whatever reason, do our best to fix the rest
+# instead of leaving everything in middle of two states
+#set -euo pipefail
 
 workspaces=$(swaymsg -t get_tree | jq -r '.nodes[].nodes[] | select(.type == "workspace").name' | grep -E '[0-9]{2}')
 

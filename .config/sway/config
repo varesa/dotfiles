@@ -288,6 +288,8 @@ for_window [title="^Properties: "] floating enable
 # Firefox
 for_window [title="^Opening "] floating enable
 for_window [title="^Firefox - Choose "] floating enable
+# Jetbrains splash
+for_window [title="^win0"] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

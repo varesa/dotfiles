@@ -134,6 +134,10 @@ if [ -d ~/bin ]
 then
     export PATH="$HOME/bin:$PATH"
 fi
+if [ -d ~/.local/bin ]
+then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 #
 # Create a local home for use if primary home is on a network share

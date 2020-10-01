@@ -95,6 +95,12 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# https://www.reddit.com/r/swaywm/comments/fk08lu/nicer_brightness_control/
+# set brightness logarithmically by factor 1.4
+# .72 is just slightly bigger than 1 / 1.4
+bindsym $mod+F3 exec light -S "$(light -G | awk '{ print int($1 / 1.4) }')"
+bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }')"
+
 
 ### Key bindings
 #
@@ -270,6 +276,7 @@ set $screenshot_region slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'scree
 set $screenshot_all grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 bindsym Shift+print exec $screenshot_region
+bindsym Shift+$mod+s exec $screenshot_region
 bindsym print exec $screenshot_all
 
 

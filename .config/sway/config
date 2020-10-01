@@ -82,6 +82,7 @@ bindsym $mod+g exec $locker
 
 input "*" {
     xkb_layout fi
+    xkb_options caps:ctrl_modifier
 }
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%

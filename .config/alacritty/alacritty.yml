@@ -6,7 +6,7 @@ env:
 colors:
   # Default colors
   primary:
-    background: '#2D2D2D'
+    background: '#1D1D1D'
     foreground: '#EEEEEE'
   # Normal colors
   normal:

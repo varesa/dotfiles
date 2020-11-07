@@ -18,7 +18,7 @@ order += "disk /"
 #order += "run_watch VPN"
 #order += "wireless _first_"
 #order += "ethernet bridge0"
-#order += "battery 0"
+order += "battery 0"
 order += "load"
 order += "volume master"
 order += "tztime local"
@@ -40,7 +40,7 @@ ethernet bridge0 {
 }
 
 battery 0 {
-        format = "%status %percentage %remaining"
+        format = "%consumption/%status %percentage [%remaining] "
 }
 
 run_watch DHCP {

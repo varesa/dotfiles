@@ -40,6 +40,7 @@ Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'w0rp/ale'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end() " All of your Plugins must be added before the following line
 

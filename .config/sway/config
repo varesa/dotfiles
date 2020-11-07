@@ -17,7 +17,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+#set $term gnome-terminal
+set $term alacritty
 
 set $focused_display "$(swaymsg -t get_outputs -p | grep Output | awk '{print NR-1 $s}' | grep focused | cut -c 1)"
 
@@ -288,7 +289,7 @@ for_window [title="watch .*/get_opsgenie_alerts.py$"] border none
 no_focus [title="xfce4-notifyd"]
 no_focus [title="TelegramDesktop"]
 for_window [title="^Steam"] border none
-for_window [title="^Steam - "] floating enable
+for_window [title="^Steam "] floating enable
 for_window [title="^SpeedCrunch"] floating enable
 # Thunderbird
 for_window [title="^Sending Message - "] floating enable

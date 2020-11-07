@@ -86,7 +86,11 @@ bindsym $mod+g exec $locker
 input "*" {
     xkb_layout fi
     xkb_options caps:ctrl_modifier
+}
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
     tap enabled
+    natural_scroll enabled
 }
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%

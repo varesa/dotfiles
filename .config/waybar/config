@@ -126,7 +126,9 @@
 
     "sway/workspaces": {
         "all-outputs": false,
-        "disable-scroll": true,
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
         "format": "{icon} {name}",
         "format-icons": {
             "1:www": "龜", // Icon: firefox-browser

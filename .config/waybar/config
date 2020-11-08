@@ -137,8 +137,8 @@
             "4:terminals": "", // Icon: terminal
             "5:portal": "", // Icon: terminal
             "urgent": "",
-            "focused": "",
-            "default": ""
+            "focused": "",
+            "default": ""
         }
     },
 

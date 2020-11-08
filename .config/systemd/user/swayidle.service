@@ -9,3 +9,6 @@ ExecStart=swayidle -w \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -f -e -c 111111'
 
+[Install]
+WantedBy=default.target
+

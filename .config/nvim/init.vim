@@ -46,3 +46,13 @@ call vundle#end() " All of your Plugins must be added before the following line
 
 filetype plugin indent on  " allows auto-indenting depending on file type
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+endif

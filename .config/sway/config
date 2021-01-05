@@ -10,15 +10,16 @@ exec systemctl --user import-environment
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-#set $mod Escape
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 #set $term gnome-terminal
-set $term alacritty
+set $term ~/.config/sway/launch_cgroup.sh alacritty
 
 set $focused_display "$(swaymsg -t get_outputs -p | grep Output | awk '{print NR-1 $s}' | grep focused | cut -c 1)"
 
@@ -300,6 +301,8 @@ for_window [title="^Opening "] floating enable
 for_window [title="^Firefox - Choose "] floating enable
 # Jetbrains splash
 for_window [title="^win0"] floating enable
+# Slack call overlay
+for_window [title="Slack \| mini panel"] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

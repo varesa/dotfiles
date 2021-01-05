@@ -1,0 +1,22 @@
+# Application overrides
+#for_window [class="^Chrome$" title=" - Google Chrome$"] border none
+#for_window [class="Google-chrome" title="Google Chrome"] border none
+for_window [title=" - Google Chrome$"] border none
+for_window [title="watch .*/get_opsgenie_alerts.py$"] border none
+no_focus [title="xfce4-notifyd"]
+no_focus [title="TelegramDesktop"]
+for_window [title="TelegramDesktop"] floating enable, border none
+for_window [title="^Steam"] border none
+for_window [title="^Steam "] floating enable
+for_window [title="^SpeedCrunch"] floating enable
+# Thunderbird
+for_window [title="^Sending Message - "] floating enable
+# Dia, etc.
+for_window [title="^Properties: "] floating enable
+# Firefox
+for_window [title="^Opening "] floating enable
+for_window [title="^Firefox - Choose "] floating enable
+# Jetbrains splash
+for_window [title="^win0"] floating enable
+# Slack call overlay
+for_window [title="Slack \| mini panel"] floating enable

@@ -136,30 +136,37 @@ bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }
 
     # exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
 #
 # Moving around:
 #
+
     # Move your focus around
     bindsym $mod+$left focus left
+    bindsym $mod+Left focus left
+
     bindsym $mod+$down focus down
+    bindsym $mod+Down focus down
+
     bindsym $mod+$up focus up
+    bindsym $mod+Up focus up
+
     bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
-    #bindsym $mod+Left focus left
-    #bindsym $mod+Down focus down
-    #bindsym $mod+Up focus up
-    #bindsym $mod+Right focus right
+    bindsym $mod+Right focus right
 
     # _move_ the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+Left move left
+    
     bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+Down move down
+
     bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+Up move up
+
     bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
-    #bindsym $mod+Shift+Left move left
-    #bindsym $mod+Shift+Down move down
-    #bindsym $mod+Shift+Up move up
-    #bindsym $mod+Shift+Right move right
+    bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
@@ -168,9 +175,9 @@ bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }
     bindsym $mod+Shift+section exec swaymsg move container to workspace $(swaymsg -t get_workspaces | jq -r '.[].name' | dmenu -m $focused_display)
 
     exec ~/.config/sway/init_workspaces.sh
-    set $workspace exec ~/.config/sway/switch_workspace.sh
 
     # switch to workspace
+    set $workspace exec ~/.config/sway/switch_workspace.sh
     bindsym $mod+1 $workspace 1
     bindsym $mod+2 $workspace 2
     bindsym $mod+3 $workspace 3
@@ -182,8 +189,9 @@ bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }
     bindsym $mod+9 $workspace 9
     bindsym $mod+0 $workspace 10
 
-    set $move_to_workspace exec ~/.config/sway/move_to_workspace.sh
     # move focused container to workspace
+    set $move_to_workspace exec ~/.config/sway/move_to_workspace.sh
+
     bindsym $mod+Shift+1 $move_to_workspace 1
     bindsym $mod+Shift+2 $move_to_workspace 2
     bindsym $mod+Shift+3 $move_to_workspace 3
@@ -194,9 +202,8 @@ bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }
     bindsym $mod+Shift+8 $move_to_workspace 8
     bindsym $mod+Shift+9 $move_to_workspace 9
     bindsym $mod+Shift+0 $move_to_workspace 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-    
+   
+    # rename active workspace
     bindsym $mod+Shift+n exec ~/.config/sway/rename_workspace.sh
 #
 # Layout stuff:
@@ -239,19 +246,16 @@ bindsym $mod+F4 exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 50px
-    bindsym $down resize grow height 50px
-    bindsym $up resize shrink height 50px
-    bindsym $right resize grow width 50px
+    bindsym $left resize shrink width 50px # hjkl
+    bindsym Left resize shrink width 50px # arrows
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 50px
+    bindsym $down resize grow height 50px
     bindsym Down resize grow height 50px
+
+    bindsym $up resize shrink height 50px
     bindsym Up resize shrink height 50px
+
+    bindsym $right resize grow width 50px
     bindsym Right resize grow width 50px
 
     # return to default mode
@@ -271,7 +275,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     #status_command while date +'%Y-%m-%d %H:%M:%S %p'; do sleep 1; done
-    status_command i3status
+    #status_command i3status
 
     colors {
         statusline #ffffff

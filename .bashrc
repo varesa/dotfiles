@@ -1,8 +1,8 @@
 # .bashrc
 
-if [ -n "$PS1" ]; # && [ -z "$ZSH" ]; 
+if [ -n "$PS1" ] && [ -z "$ZSH" ];
 then
-    if [ -z "$(uname -r | grep el5)" ]
+    if ! uname -r | grep -q el5
     then
         type zsh >/dev/null && exec zsh "$@"
     fi
@@ -11,7 +11,7 @@ fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 if [ -f .bashrc.local ]; then

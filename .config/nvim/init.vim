@@ -13,6 +13,9 @@ set nowrap                 " do not wrap by default
 set number                 " add line numbers
 highlight LineNr ctermfg=grey
 
+autocmd FileType yml setlocal ai ts=2 sw=2 et
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
+
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -41,6 +44,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'w0rp/ale'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'pearofducks/ansible-vim'
 
 call vundle#end() " All of your Plugins must be added before the following line
 

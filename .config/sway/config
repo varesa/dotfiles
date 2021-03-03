@@ -303,6 +303,10 @@ for_window [title="^Firefox - Choose "] floating enable
 for_window [title="^win0"] floating enable
 # Slack call overlay
 for_window [title="Slack \| mini panel"] floating enable
+# PyCharm, etc.
+for_window [title="^Add File to Git"] floating enable
+for_window [title="^Rename$"] floating enable
+for_window [title="^Delete$"] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

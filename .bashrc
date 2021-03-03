@@ -1,6 +1,6 @@
 # .bashrc
 
-if [ -n "$PS1" ] && [ -z "$ZSH" ];
+if [ -n "$PS1" ];
 then
     if ! uname -r | grep -q el5
     then

@@ -45,6 +45,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'w0rp/ale'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end() " All of your Plugins must be added before the following line
 
@@ -60,3 +61,6 @@ if executable('rls')
         \ 'whitelist': ['rust'],
         \ })
 endif
+
+runtime coc.vim
+nnoremap <M-l> :set nonumber signcolumn=no <BAR> :GitGutterDisable <BAR> :ALEDisable <BAR> :CocDisable <CR>

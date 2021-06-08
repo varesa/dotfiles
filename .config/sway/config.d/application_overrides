@@ -5,7 +5,6 @@ for_window [title=" - Google Chrome$"] border none
 for_window [title="watch .*/get_opsgenie_alerts.py$"] border none
 no_focus [title="xfce4-notifyd"]
 no_focus [title="TelegramDesktop"]
-for_window [title="TelegramDesktop"] floating enable, border none
 for_window [title="^Steam"] border none
 for_window [title="^Steam "] floating enable
 for_window [title="^SpeedCrunch"] floating enable
@@ -20,3 +19,8 @@ for_window [title="^Firefox - Choose "] floating enable
 for_window [title="^win0"] floating enable
 # Slack call overlay
 for_window [title="Slack \| mini panel"] floating enable
+# PyCharm, etc.
+for_window [title="^Add File to Git"] floating enable
+for_window [title="^Rename$"] floating enable
+for_window [title="^Delete$"] floating enable
+

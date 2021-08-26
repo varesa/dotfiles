@@ -195,7 +195,9 @@ check_dotfiles() {
 DOTFILES_UPDATE_FLAG="$(realpath ~/.dotfiles_need_update)"
 # Check for updates asynchronously in the background
 #( test ! -f "$DOTFILES_UPDATE_FLAG" && check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
-( check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
+
+# SSH key not available on launch
+#( check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
 # Print to user if an earlier run found something to update
 test -f "$DOTFILES_UPDATE_FLAG" && cat "$DOTFILES_UPDATE_FLAG"
 

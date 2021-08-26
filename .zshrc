@@ -104,6 +104,10 @@ aws_vault_account() {
 
 export PROMPT="\$(aws_vault_account)$PROMPT"
 
+if [[ -f /toolbox-name ]]; then
+    export PROMPT="$(cat /toolbox-name) $PROMPT"
+fi
+
 #
 # Try to figure out the best editor
 

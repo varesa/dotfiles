@@ -81,3 +81,7 @@ os_project() {
 
 alias ssh_no_pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias cal='cal -m'
+
+yaml2jsonnet2() {
+    yaml2jsonnet "$1" | jsonnetfmt -
+}

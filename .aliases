@@ -85,3 +85,5 @@ alias cal='cal -m'
 yaml2jsonnet2() {
     yaml2jsonnet "$1" | jsonnetfmt -
 }
+
+alias ppnoop='echo puppet agent --test --noop --agent_disabled_lockfile /non/existant'

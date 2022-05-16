@@ -1,5 +1,5 @@
 " Do not suggest completions automatically
-let b:coc_suggest_disable = 1
+" let b:coc_suggest_disable = 1
 
 " TextEdit might fail if hidden is not set.
 set hidden

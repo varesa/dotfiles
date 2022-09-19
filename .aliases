@@ -120,8 +120,8 @@ cgkill() {
     CG="$(find /sys/fs/cgroup -name "*$1*.scope")"
     echo -e "Matched:\n${CG}"
 
-    if [[ "$(echo $CG | wc -l)" -eq "1" ]] && echo "$CG" | grep -q '\.scope$'; then
-        echo "Press enter to kill"; read CONFIRM
-        kill $(cat "${CG}/cgroup.procs")
-    fi
+    echo "Press enter to kill"; read CONFIRM
+    echo "$CG" | while read line; do
+        kill $(cat "${line}/cgroup.procs")
+    done
 }

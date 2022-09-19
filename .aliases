@@ -87,3 +87,30 @@ yaml2jsonnet2() {
 }
 
 alias ppnoop='echo puppet agent --test --noop --agent_disabled_lockfile /non/existant'
+alias ocadmin='oc --as system:admin'
+
+ssm() {
+    aws-vault exec $1 -- aws ssm start-session --target $2
+}
+
+alias vammassh='ssh -oHostKeyAlgorithms=ssh-rsa'
+
+fcd() {
+    local results
+    local count
+    local target
+
+    results="$(find . -name "*$1*")"
+    if [[ -z "$results" ]]; then
+        echo "error: no results"
+    else
+        count="$(echo "$results" | wc -l)"
+        if [[ "$count" -gt 1 ]]; then
+            target="$(echo $results | fzf)"
+        else
+            target="$results"
+        fi
+        echo "-> $target"
+        cd "$target"
+    fi
+}

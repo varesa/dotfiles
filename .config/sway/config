@@ -32,7 +32,11 @@ set $menu_windows "python3 ~/.config/sway/switch_window.py"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
+<<<<<<< HEAD
 #output * bg /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+=======
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+>>>>>>> 0f9fecf (minor sway edits)
 #
 # Example configuration:
 #
@@ -280,6 +284,35 @@ set $screenshot_all grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%
 bindsym Shift+print exec $screenshot_region
 bindsym Shift+$mod+s exec $screenshot_region
 bindsym print exec $screenshot_all
+
+# Application overrides
+#for_window [class="^Chrome$" title=" - Google Chrome$"] border none
+#for_window [class="Google-chrome" title="Google Chrome"] border none
+for_window [title=" - Google Chrome$"] border none
+for_window [title="watch .*/get_opsgenie_alerts.py$"] border none
+no_focus [title="xfce4-notifyd"]
+no_focus [title="TelegramDesktop"]
+for_window [title="^Steam"] border none
+for_window [title="^Steam "] floating enable
+for_window [title="^SpeedCrunch"] floating enable
+# Thunderbird
+for_window [title="^Sending Message - "] floating enable
+# Dia, etc.
+for_window [title="^Properties: "] floating enable
+# Firefox
+for_window [title="^Opening "] floating enable
+for_window [title="^Firefox - Choose "] floating enable
+# Jetbrains splash
+for_window [title="^win0"] floating enable
+# Slack call overlay
+for_window [title="Slack \| mini panel"] floating enable
+# PyCharm, etc.
+for_window [title="^Add File to Git"] floating enable
+for_window [title="^Rename$"] floating enable
+for_window [title="^Delete$"] floating enable
+
+for_window [title="^Firefox — Sharing Indicator$"] floating enable
+for_window [title="JACK Audio Connection Kit .* QjackCtl"] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

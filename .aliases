@@ -112,6 +112,8 @@ fcd() {
         fi
         echo "-> $target"
         cd "$target"
+    fi
+}
 
 alias sl='exa --git-ignore'
 

@@ -10,3 +10,7 @@ fi
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/esav.fi/esa/.local/share/JetBrains/Toolbox/scripts"

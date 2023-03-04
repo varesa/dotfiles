@@ -1,5 +1,5 @@
 set nocompatible           " Disable compatibility to old-time vi
-set showmatch              " Show matching brackets                                        
+set showmatch              " Show matching brackets
 set ignorecase             " Case insensitive matching
 set mouse=v                " middle-click paste with mouse
 set hlsearch               " highlight search results
@@ -42,8 +42,8 @@ Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'w0rp/ale'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'pearofducks/ansible-vim'
+"Plugin 'editorconfig/editorconfig-vim'
+"Plugin 'pearofducks/ansible-vim'
 Plugin 'neoclide/coc.nvim'
 
 call vundle#end() " All of your Plugins must be added before the following line

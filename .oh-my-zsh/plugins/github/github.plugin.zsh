@@ -1,8 +1,6 @@
-# Set up hub wrapper for git, if it is available; http://github.com/github/hub
-if [ "$commands[(I)hub]" ]; then
-  if hub --version &>/dev/null; then
-    eval $(hub alias -s zsh)
-  fi
+# Set up hub wrapper for git, if it is available; https://github.com/github/hub
+if (( $+commands[hub] )); then
+  alias git=hub
 fi
 
 # Functions #################################################################
@@ -38,7 +36,7 @@ new_gh() { # [DIRECTORY]
   print '.*'"\n"'*~' >> .gitignore
   git add [^.]* \
     || return
-  git add .gitignore \
+  git add -f .gitignore \
     || return
   git commit -m 'Initial commit.' \
     || return
@@ -65,13 +63,14 @@ exist_gh() { # [DIRECTORY]
 # git.io "GitHub URL"
 #
 # Shorten GitHub url, example:
-#   https://github.com/nvogel/dotzsh    >   http://git.io/8nU25w  
+#   https://github.com/nvogel/dotzsh    >   https://git.io/8nU25w
 # source: https://github.com/nvogel/dotzsh
 # documentation: https://github.com/blog/985-git-io-github-url-shortener
 #
 git.io() {
-  emulate -L zsh
-  curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
+  # emulate -L zsh
+  # curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
+  print -u2 ${(%):-"%F{yellow}%BThe \`git.io\` is deprecated.%b\nView the announcement made by GitHub: https://github.blog/changelog/2022-01-11-git-io-no-longer-accepts-new-urls/%f"}
 }
 
 # End Functions #############################################################

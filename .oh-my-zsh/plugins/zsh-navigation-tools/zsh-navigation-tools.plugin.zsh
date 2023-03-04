@@ -1,38 +1,65 @@
 #!/usr/bin/env zsh
 
-REPO_DIR="${0%/*}"
-CONFIG_DIR="$HOME/.config/znt"
+#
+# No plugin manager is needed to use this file. All that is needed is adding:
+#   source {where-znt-is}/zsh-navigation-tools.plugin.zsh
+#
+# to ~/.zshrc.
+#
+
+# According to the standard:
+# https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
+
+export ZNT_REPO_DIR="${0:h}"
+export ZNT_CONFIG_DIR="$HOME/.config/znt"
+
+#
+# Update FPATH if:
+# 1. Not loading with a plugin manager
+# 2. Not having fpath already updated
+#
+
+if [[ ${zsh_loaded_plugins[-1]} != */zsh-navigation-tools && -z ${fpath[(r)${0:h}]} ]]
+then
+    fpath+=( "${0:h}" )
+fi
 
 #
 # Copy configs
 #
 
-if ! test -d "$HOME/.config"; then
-    mkdir "$HOME/.config"
+if [[ ! -d "$HOME/.config" ]]; then
+    command mkdir "$HOME/.config"
 fi
 
-if ! test -d "$CONFIG_DIR"; then
-    mkdir "$CONFIG_DIR"
+if [[ ! -d "$ZNT_CONFIG_DIR" ]]; then
+    command mkdir "$ZNT_CONFIG_DIR"
 fi
 
 # 9 files
-set n-aliases.conf n-env.conf n-history.conf n-list.conf n-panelize.conf n-cd.conf n-functions.conf n-kill.conf n-options.conf
+unset __ZNT_CONFIG_FILES
+typeset -ga __ZNT_CONFIG_FILES
+set +A __ZNT_CONFIG_FILES n-aliases.conf n-env.conf n-history.conf n-list.conf n-panelize.conf n-cd.conf n-functions.conf n-kill.conf n-options.conf
 
 # Check for random 2 files if they exist
 # This will shift 0 - 7 elements
-shift $(( RANDOM % 8 ))
-if ! test -f "$CONFIG_DIR/$1" || ! test -f "$CONFIG_DIR/$2"; then
+shift $(( RANDOM % 8 )) __ZNT_CONFIG_FILES
+if [[ ! -f "$ZNT_CONFIG_DIR/${__ZNT_CONFIG_FILES[1]}" || ! -f "$ZNT_CONFIG_DIR/${__ZNT_CONFIG_FILES[2]}" ]]; then
     # Something changed - examine every file
-    set n-aliases.conf n-env.conf n-history.conf n-list.conf n-panelize.conf n-cd.conf n-functions.conf n-kill.conf n-options.conf
-    for i; do
-        if ! test -f "$CONFIG_DIR/$i"; then
-            cp "$REPO_DIR/.config/znt/$i" "$CONFIG_DIR"
+    set +A __ZNT_CONFIG_FILES n-aliases.conf n-env.conf n-history.conf n-list.conf n-panelize.conf n-cd.conf n-functions.conf n-kill.conf n-options.conf
+    unset __ZNT_CONFIG_FILE
+    typeset -g __ZNT_CONFIG_FILE
+    for __ZNT_CONFIG_FILE in "${__ZNT_CONFIG_FILES[@]}"; do
+        if [[ ! -f "$ZNT_CONFIG_DIR/$__ZNT_CONFIG_FILE" ]]; then
+            command cp "$ZNT_REPO_DIR/.config/znt/$__ZNT_CONFIG_FILE" "$ZNT_CONFIG_DIR"
         fi
     done
+    unset __ZNT_CONFIG_FILE
 fi
 
-# Don't leave positional parameters being set
-set --
+unset __ZNT_CONFIG_FILES
 
 #
 # Load functions

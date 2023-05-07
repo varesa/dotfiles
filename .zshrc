@@ -59,6 +59,11 @@ unsetopt share_history
 
 # User configuration
 
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

@@ -102,7 +102,17 @@ aws_vault_account() {
     fi
 }
 
-export PROMPT="\$(aws_vault_account)$PROMPT"
+kube_context() {
+    if [[ -n "$KUBECONFIG" ]]; then
+        context="$(cat $KUBECONFIG | grep '^current.*')"
+        if echo $context | grep -q arn:aws:eks; then
+            context="$(echo $context | grep -o "cluster/.*")"
+        fi
+        echo "($context) "
+    fi
+}
+
+export PROMPT="\$(kube_context)\$(aws_vault_account)$PROMPT"
 
 if [[ -f /toolbox-name ]]; then
     export PROMPT="$(cat /toolbox-name) $PROMPT"

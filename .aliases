@@ -117,7 +117,6 @@ fcd() {
 
 alias sl='exa --git-ignore'
 
-
 cgkill() {
     CG="$(find /sys/fs/cgroup -name "*$1*.scope")"
     echo -e "Matched:\n${CG}"
@@ -126,4 +125,49 @@ cgkill() {
     echo "$CG" | while read line; do
         kill $(cat "${line}/cgroup.procs")
     done
+}
+
+PATH_prepend() {
+    local dir
+    dir="$(mktemp -d)"
+
+    if [[ -n "$2" ]]; then
+        cp "$1" "$dir/$2"
+    else
+        cp "$1" "$dir/"
+    fi
+
+    export PATH=$dir:$PATH
+    export PROMPT="*$PROMPT"
+}
+
+kubeconfig() {
+    pushd ~/.kube >/dev/null
+    configs="$(find . -maxdepth 1 -name "*-*" -type f | tr -d './' | sort; echo NONE)"
+
+    while [[ "$#" -gt 0 ]]
+	do
+		configs="$(echo $configs | grep $1)"
+		shift
+	done
+
+    if [[ "$(echo $configs | wc -l)" -gt 1 ]]
+	then
+		choice="$(echo $configs | fzf)"
+		if [[ "$choice" == "" ]]
+		then
+			echo "Selection canceled"
+			return 0
+		fi
+	else
+		choice="$configs"
+	fi
+
+    if [[ "$choice" == "NONE" ]]; then
+        export KUBECONFIG=""
+    else
+        export KUBECONFIG="$HOME/.kube/$choice"
+    fi
+
+    popd >/dev/null
 }

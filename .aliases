@@ -132,9 +132,9 @@ PATH_prepend() {
     dir="$(mktemp -d)"
 
     if [[ -n "$2" ]]; then
-        cp "$1" "$dir/$2"
+        ln -s "$1" "$dir/$2"
     else
-        cp "$1" "$dir/"
+        ln -s "$1" "$dir/${basename $1}"
     fi
 
     export PATH=$dir:$PATH

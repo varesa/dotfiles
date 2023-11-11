@@ -171,11 +171,3 @@ kubeconfig() {
 
     popd >/dev/null
 }
-
-zsh_history_dates() {
-    while read line; do
-        timestamp="$(echo $line | cut -d ':' -f 2 | tr -d ' ')"
-        command="$(echo $line | cut -d ';' -f 2)"
-        echo "$(date -d "@${timestamp}") -- ${command}"
-    done
-}

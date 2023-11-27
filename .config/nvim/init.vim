@@ -33,7 +33,7 @@ set undofile
 
 
 "" Vundle
-if isdirectory($HOME."/.config/nvim/bundle/Vundle.vim")
+if isdirectory($HOME."/.config/nvim/bundle/Vundle.vim/doc")
     filetype off
 
     set rtp+=~/.config/nvim/bundle/Vundle.vim  " set the runtime path to include Vundle

@@ -33,20 +33,22 @@ set undofile
 
 
 "" Vundle
-filetype off
+if isdirectory($HOME."/.config/nvim/bundle/Vundle.vim")
+    filetype off
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim  " set the runtime path to include Vundle
-call vundle#begin('~/.config/nvim/bundle') " and initialize
+    set rtp+=~/.config/nvim/bundle/Vundle.vim  " set the runtime path to include Vundle
+    call vundle#begin('~/.config/nvim/bundle') " and initialize
 
-Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'w0rp/ale'
-"Plugin 'editorconfig/editorconfig-vim'
-"Plugin 'pearofducks/ansible-vim'
-Plugin 'neoclide/coc.nvim'
+    Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'w0rp/ale'
+    "Plugin 'editorconfig/editorconfig-vim'
+    "Plugin 'pearofducks/ansible-vim'
+    Plugin 'neoclide/coc.nvim'
 
-call vundle#end() " All of your Plugins must be added before the following line
+    call vundle#end() " All of your Plugins must be added before the following line
+endif
 
 filetype plugin indent on  " allows auto-indenting depending on file type
 
@@ -61,5 +63,7 @@ if executable('rls')
         \ })
 endif
 
-runtime coc.vim
-nnoremap <M-l> :set nonumber signcolumn=no <BAR> :GitGutterDisable <BAR> :ALEDisable <BAR> :CocDisable <CR>
+if isdirectory($HOME."/.config/nvim/bundle/coc.vim")
+    runtime coc.vim
+    nnoremap <M-l> :set nonumber signcolumn=no <BAR> :GitGutterDisable <BAR> :ALEDisable <BAR> :CocDisable <CR>
+endif

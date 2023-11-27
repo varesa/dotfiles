@@ -1,6 +1,6 @@
 # Optional (IMPORTANT: run sudo first unless NOPASSWD, e.g. sudo whoami)
 
-sudo yum install -y zsh tmux vim-enhanced git
+sudo dnf install -y epel-release && sudo dnf install -y zsh tmux neovim git
 
 # To initialize:
 

@@ -309,6 +309,7 @@ for_window [title="^Delete$"] floating enable
 
 for_window [title="^Firefox — Sharing Indicator$"] floating enable
 for_window [title="JACK Audio Connection Kit .* QjackCtl"] floating enable
+for_window [title="Welcome to CLion"] floating enable
 
 # Fix font rendering in GTK apps
 exec /usr/libexec/gsd-xsettings

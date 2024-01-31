@@ -1,0 +1,26 @@
+[colors.bright]
+black = "#777C85"
+blue = "#6AB0F3"
+cyan = "#76D4D6"
+green = "#76D4D6"
+magenta = "#E1A6F2"
+red = "#F2777A"
+white = "#FFFFFF"
+yellow = "#FFEEA6"
+
+[colors.normal]
+black = "#2D2D2D"
+blue = "#729FCF"
+cyan = "#34E2E2"
+green = "#8AE234"
+magenta = "#AD7FA8"
+red = "#EF2929"
+white = "#EEEEEE"
+yellow = "#FCE94F"
+
+[colors.primary]
+background = "#2D2D2D"
+foreground = "#EEEEEE"
+
+[env]
+TERM = "xterm-256color"

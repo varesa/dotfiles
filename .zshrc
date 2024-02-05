@@ -220,3 +220,8 @@ update_dotfiles() {
     dotfiles pull --ff-only origin
     test -f "$DOTFILES_UPDATE_FLAG" && rm "$DOTFILES_UPDATE_FLAG"
 }
+
+if [ $commands[oc] ]; then
+  source <(oc completion zsh)
+  compdef _oc oc
+fi

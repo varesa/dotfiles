@@ -63,7 +63,7 @@ if executable('rls')
         \ })
 endif
 
-if isdirectory($HOME."/.config/nvim/bundle/coc.vim")
+if isdirectory($HOME."/.config/nvim/bundle/coc.nvim")
     runtime coc.vim
     nnoremap <M-l> :set nonumber signcolumn=no <BAR> :GitGutterDisable <BAR> :ALEDisable <BAR> :CocDisable <CR>
 endif

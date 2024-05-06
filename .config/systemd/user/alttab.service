@@ -1,5 +1,0 @@
-[Unit]
-Description=Store the last active workspace for an alt-tab like function 
-
-[Service]
-ExecStart=/home/esav.fi/esa/.config/sway/alttab_daemon.py

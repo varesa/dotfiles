@@ -9,14 +9,6 @@ alias vipaste='f=$(mktemp) && vi $f && $EDITOR $f && rm -f $f'
 
 alias sshagent='eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa'
 
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gd='git diff'
-
-# Reload configs update tab complete
-alias reload='exec zsh'
-
 function sharefile {
     RHOST="nginx.tre.esav.fi"
     RPATH="/var/www/share"
@@ -69,14 +61,6 @@ log() {
         echo "$(date +%s) viewed log" >> "$logfile"
         cat "$logfile" | tail -n 15 | ~/.local/bin/parse_log.py
     fi
-}
-
-alias kc=kubectl
-alias kctx=kubectl-ctx
-alias kns=kubectl-ns
-
-os_project() {
-    export OS_PROJECT_NAME=$1 OS_TENANT_NAME=$1
 }
 
 alias ssh_no_pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'

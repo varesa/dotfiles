@@ -17,12 +17,3 @@ dotfiles pull origin master
 
 dotfiles config status.showuntrackedfiles no
 
-# Related:
-# - gnome-terminal
-#   * preferences
-#    > no menubar
-#    > no accelerator key
-#    > no shortcuts
-#   * new profile
-#    > run sh -c "tmux && zsh"
-#    > no scrollbar

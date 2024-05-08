@@ -38,17 +38,21 @@ function eyaml {
         PUBKEY="/home/esav.fi/esa/workspace/puppet/hiera/keys/public_key.pkcs7.pem"
     fi
 
-    if echo $PWD | grep -q "^/home/esa/repos/puppet/ppadmin/"; then
+    if echo $PWD | grep -q "^/home/esa/repos/puppet/ppadmin"; then
         PUBKEY="/home/esa/repos/puppet/ppadmin/keys/public_key.pkcs7.pem"
+    fi
+
+    if echo $PWD | grep -q "^/home/esa/workspace/puppet/ppadmin"; then
+        PUBKEY="/home/esa/workspace/puppet/ppadmin/keys/public_key.pkcs7.pem"
     fi
 
 
     if [[ "$1" == "edit" || "$1" == "encrypt" ]]; then
     	echo "Using pubkey $PUBKEY"
         oper=$1; shift
-        ~/bin/eyaml $oper --pkcs7-public-key=$PUBKEY "$@"
+        /usr/bin/eyaml $oper --pkcs7-public-key=$PUBKEY "$@"
     else
-        ~/bin/eyaml "$@"
+        /usr/bin/eyaml "$@"
     fi
 }
 

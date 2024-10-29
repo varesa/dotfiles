@@ -31,8 +31,9 @@ set $menu_windows "python3 ~/.config/sway/switch_window.py"
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
-#output * bg /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #404040 solid_color
 #
 # Example configuration:
 #
@@ -279,7 +280,7 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232 #323232 #5c5c5c
     }
 }
 

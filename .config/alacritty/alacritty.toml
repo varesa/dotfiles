@@ -19,7 +19,8 @@ white = "#EEEEEE"
 yellow = "#FCE94F"
 
 [colors.primary]
-background = "#2D2D2D"
+background = "#1D1D1D"
+#background = "#2D2D2D"
 foreground = "#EEEEEE"
 
 [env]

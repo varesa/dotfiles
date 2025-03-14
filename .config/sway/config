@@ -58,8 +58,10 @@ output * bg #404040 solid_color
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 set $locker 'swaylock -f -e -c 111111'
+set $suspend 'swaylock -f -e -c 111111; systemctl suspend'
 
 bindsym $mod+g exec $locker
+bindsym $mod+Shift+g exec $suspend
 
 #exec swayidle -w \
 #    timeout 300 'swaymsg "output * dpms off"' \

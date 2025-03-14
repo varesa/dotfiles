@@ -47,6 +47,13 @@ DISABLE_AUTO_UPDATE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# This needs to be done before plugins are initialized, or some plugins will no-op
+# out due to missign binaries
+if [ -d ~/.local/bin ]
+then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -56,6 +63,7 @@ plugins=(oc git)
 source $ZSH/oh-my-zsh.sh
 
 unsetopt share_history
+setopt INC_APPEND_HISTORY
 
 # User configuration
 
@@ -129,38 +137,6 @@ then
 fi
 
 #
-# Add ~/bin/
-if [ -d ~/bin ]
-then
-    export PATH="$HOME/bin:$PATH"
-fi
-if [ -d ~/.local/bin ]
-then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-#
-# Create a local home for use if primary home is on a network share
-
-if mount | grep " on $(echo ~) type nfs" >/dev/null
-then
-
-    user=$(whoami)
-
-    if [ ! -d /home/local/$user ]
-    then
-        echo "Home on network drive and /home/local/$user missing. Creating (sudo required)"
-        sudo mkdir -p /home/local/$user
-        sudo chown $user: /home/local/$user
-        cp ~/.zsh_history ~/local/.zsh_history
-        echo "Created."
-    fi
-
-    HISTFILE=/home/local/$user/.zsh_history
-
-fi
-
-#
 # Load up keyring if in a graphical session
 
 if [ -n "$DESKTOP_SESSION" ]; then
@@ -168,34 +144,3 @@ if [ -n "$DESKTOP_SESSION" ]; then
     export SSH_AUTH_SOCK
 fi
 
-#
-# Check for updates to dotfiles
-check_dotfiles() {
-    branch="$(dotfiles branch | grep \* | cut -d ' ' -f2)"
-    upstream="origin/$branch"
-
-    dotfiles remote update >/dev/null
-    if [[ "$(dotfiles rev-parse $branch)" != "$(dotfiles rev-parse $upstream)" ]]; then
-        if [[ "$(dotfiles rev-parse $upstream)" == "$(dotfiles merge-base $branch $upstream)" ]]; then
-            echo "Local changes to dotfiles (need to push)"
-        else
-            echo "Remote changes to dotfiles (need to pull)"
-        fi
-    fi
-
-    if ! dotfiles status | grep -q "nothing to commit"; then
-        echo "The are uncommitted changes to dotfiles"
-    fi
-}
-
-DOTFILES_UPDATE_FLAG="$(realpath ~/.dotfiles_need_update)"
-# Check for updates asynchronously in the background
-#( test ! -f "$DOTFILES_UPDATE_FLAG" && check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
-( check_dotfiles 1>"$DOTFILES_UPDATE_FLAG" 2>/dev/null & )
-# Print to user if an earlier run found something to update
-test -f "$DOTFILES_UPDATE_FLAG" && cat "$DOTFILES_UPDATE_FLAG"
-
-update_dotfiles() {
-    dotfiles pull --ff-only origin
-    test -f "$DOTFILES_UPDATE_FLAG" && rm "$DOTFILES_UPDATE_FLAG"
-}

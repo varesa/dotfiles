@@ -157,3 +157,8 @@ if [ $commands[oc] ]; then
   source <(oc completion zsh)
   compdef _oc oc
 fi
+
+# AppImage based vscode/cursor/etc. break running tools like cargo
+if [[ -n "$ARGV0" && "$ARGV0" == *".AppImage" ]]; then
+    unset ARGV0
+fi

@@ -1,5 +1,9 @@
 # .bashrc
 
+if [[ "$TERMINAL_EMULATOR" == "JetBrains-JediTerm" ]]; then
+    return 0
+fi
+
 if [ -n "$PS1" ];
 then
     if ! uname -r | grep -q el5

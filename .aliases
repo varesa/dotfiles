@@ -131,7 +131,7 @@ PATH_prepend() {
 
 kubeconfig() {
     pushd ~/.kube >/dev/null
-    configs="$(find . -maxdepth 1 -name "*-*" -type f | tr -d './' | sort; echo NONE)"
+    configs="$(find . -maxdepth 1 -name "*-*" -type f | cut -c '3-' | sort; echo NONE)"
 
     while [[ "$#" -gt 0 ]]
 	do

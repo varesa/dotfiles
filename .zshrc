@@ -166,3 +166,10 @@ fi
 if [[ -n "$ARGV0" && "$ARGV0" == *".AppImage" ]]; then
     unset ARGV0
 fi
+
+if type jj >/dev/null 2>&1; then
+    # JJ vscinfo
+    fpath+=$HOME/.config/zsh-jj/functions
+    zstyle ':vcs_info:*' enable jj git svn
+    source <(COMPLETE=zsh jj)
+fi

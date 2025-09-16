@@ -159,3 +159,13 @@ kubeconfig() {
 
     popd >/dev/null
 }
+
+edit_dotfiles() {
+    ln -s ~/.dotfiles ~/.git
+    test -d ~/.dotfiles.jj && ln -s ~/.dotfiles.jj ~/.jj
+}
+
+unedit_dotfiles() {
+    test -L ~/.git && rm ~/.git
+    test -L ~/.jj && rm ~/.jj
+}

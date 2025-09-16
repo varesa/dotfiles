@@ -1,0 +1,28 @@
+commit b6453d6ff5d233d472e5088d066c6469eb05c71b
+Author: Konstantin Haase <konstantin.mailinglists@googlemail.com>
+Date:   Mon Mar 31 17:53:55 2025 +0200
+
+    add --ignore-working-copy to vcs_info invocations
+
+diff --git a/functions/VCS_INFO_get_data_jj b/functions/VCS_INFO_get_data_jj
+index 14ee297..138554b 100644
+--- a/functions/VCS_INFO_get_data_jj
++++ b/functions/VCS_INFO_get_data_jj
+@@ -3,7 +3,7 @@ setopt localoptions NO_shwordsplit
+ local action branch base staged unstaged revision misc
+ local _is_working_copy _is_root _is_empty _bookmarks _bookmark_id _parent_id
+ 
+-eval `${vcs_comm[cmd]} log -n 1 --no-graph --color never \
++eval `${vcs_comm[cmd]} log --ignore-working-copy -n 1 --no-graph --color never \
+   -r "coalesce(ancestors(present(@)) & bookmarks(), root())" \
+   -T '
+     separate(" ",
+@@ -14,7 +14,7 @@ eval `${vcs_comm[cmd]} log -n 1 --no-graph --color never \
+     )
+   '`
+ 
+-eval `${vcs_comm[cmd]} log -n 1 --no-graph --color never -r "@" \
++eval `${vcs_comm[cmd]} log --ignore-working-copy -n 1 --no-graph --color never -r "@" \
+   -T '
+     separate(" ",
+       "revision=\"" ++ change_id.shortest() ++ "\"",

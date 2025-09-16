@@ -173,3 +173,20 @@ if type jj >/dev/null 2>&1; then
     zstyle ':vcs_info:*' enable jj git svn
     source <(COMPLETE=zsh jj)
 fi
+
+edit_dotfiles() {
+    ln -s ~/.dotfiles ~/.git
+    test -d ~/.dotfiles.jj && ln -s ~/.dotfiles.jj ~/.jj
+}
+
+unedit_dotfiles() {
+    test -L ~/.git && rm ~/.git
+    test -L ~/.jj && rm ~/.jj
+}
+
+dotfiles_prompt_warning() {
+    if test -e ~/.git || test -e ~/.jj; then
+        echo "(%F{red}DOTFILES%f)"
+    fi
+}
+export PROMPT="\$(dotfiles_prompt_warning)$PROMPT"

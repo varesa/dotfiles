@@ -8,25 +8,25 @@
 
 !.config
 !.config/alacritty
-!.config/alacritty/*
+!.config/alacritty/**
 !.config/flake8
 !.config/gtk-3.0/gtk.css
 !.config/nvim
-!.config/nvim/*
+!.config/nvim/**
 .config/nvim/bundle/*
-.config/nvim/bundle/vundle.sh
+!.config/nvim/bundle/vundle.sh
 !.config/sway
-!.config/sway/*
+!.config/sway/**
 !.config/systemd/user/swayidle.service
 !.config/zsh-jj
-!.config/zsh-jj/*
+!.config/zsh-jj/**
 
 !.dotfiles.readme
 !.local/bin/parse_log.py
 !.local/bin/wa
 
 !.oh-my-zsh/
-!.oh-my-zsh/*
+!.oh-my-zsh/**
 
 !.tmux.conf
 !.tmux.style

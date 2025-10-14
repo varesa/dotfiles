@@ -159,3 +159,7 @@ kubeconfig() {
 
     popd >/dev/null
 }
+
+gssh() {
+    SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)" GPG_TTY="$(tty)" ssh "$@"
+}

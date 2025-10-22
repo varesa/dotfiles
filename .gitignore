@@ -20,6 +20,8 @@
 !.config/systemd/user/swayidle.service
 !.config/zsh-jj
 !.config/zsh-jj/**
+!.config/jj
+!.config/jj/config.toml
 
 !.dotfiles.readme
 !.local/bin/parse_log.py

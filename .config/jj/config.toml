@@ -1,0 +1,13 @@
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[user]
+name = "Esa Varemo"
+email = "git@esav.fi"
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
+[aliases]
+pull = ["git", "fetch"]
+push = ["git", "push"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]

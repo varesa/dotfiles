@@ -161,5 +161,6 @@ kubeconfig() {
 }
 
 gssh() {
+    echo "Hit the button" >&2
     SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)" GPG_TTY="$(tty)" ssh "$@"
 }

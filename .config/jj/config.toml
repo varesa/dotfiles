@@ -11,3 +11,7 @@ email = "git@esav.fi"
 pull = ["git", "fetch"]
 push = ["git", "push"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+
+ntp = ["util", "exec", "--", "bash", "-c", """
+jj new && jj tug && jj push
+""", ""]

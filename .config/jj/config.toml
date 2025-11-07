@@ -6,6 +6,7 @@ email = "git@esav.fi"
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'latest_nonempty(to)' = 'latest(::to & ~empty())'
 
 [revsets]
 #default:
@@ -22,7 +23,7 @@ ancestors(
 [aliases]
 pull = ["git", "fetch"]
 push = ["git", "push"]
-tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(latest_nonempty(@))", "--to", "latest_nonempty(@)"]
 
 ntp = ["util", "exec", "--", "bash", "-c", """
 jj new && jj tug && jj push

@@ -7,6 +7,21 @@ email = "git@esav.fi"
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 
+[revsets]
+#default:
+#log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+log = """
+ancestors(
+  descendants(@, 3) | 
+  present(trunk()::) |
+  (bookmarks() & committer_date(after:"12 months ago") & ~::present(trunk())) |
+  (mutable() & committer_date(after:"12 months ago"))
+, 2)
+"""
+foo = """
+  committer_date(after:"3 months ago") |
+"""
+
 [aliases]
 pull = ["git", "fetch"]
 push = ["git", "push"]
@@ -14,4 +29,11 @@ tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 
 ntp = ["util", "exec", "--", "bash", "-c", """
 jj new && jj tug && jj push
+""", ""]
+
+[ui]
+default-command = ["util", "exec", "--", "bash", "-c", """
+jj st --no-pager
+echo ""
+jj log --no-pager
 """, ""]

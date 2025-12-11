@@ -21,6 +21,7 @@ ancestors(
 """
 
 [aliases]
+init = ["git", "init", "--colocate"]
 pull = ["git", "fetch"]
 push = ["git", "push"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(latest_nonempty(@))", "--to", "latest_nonempty(@)"]

@@ -32,6 +32,10 @@ ntp = ["util", "exec", "--", "bash", "-c", """
 jj new && jj tug && jj push
 """, ""]
 
+tp = ["util", "exec", "--", "bash", "-c", """
+jj tug && jj push
+""", ""]
+
 [ui]
 default-command = ["util", "exec", "--", "bash", "-c", """
 jj st --no-pager

@@ -165,3 +165,5 @@ gssh() {
 
 alias ccode='podman run --rm -ti --security-opt=label=disable -v $HOME/.claude:/root/.claude -v $HOME/.claude.json:/root/.claude.json -v $HOME/.kube/claude:/root/.kube/config -v $HOME/.gitconfig:/root/.gitconfig:ro -v $HOME/.config/jj:/root/.config/jj:ro -v $PWD:$PWD --workdir $PWD ccode bash -c "source ~/.bashrc && /root/.local/bin/claude \"\$@\"" ""'
 alias gemini='podman run --rm -ti --security-opt=label=disable -v $HOME/.gemini:/root/.gemini -v $HOME/.gitconfig:/root/.gitconfig:ro -v $HOME/.config/jj:/root/.config/jj:ro -v $PWD:$PWD --workdir $PWD gemini bash -c "source ~/.bashrc && gemini \"\$@\"" ""'
+
+term-copy() { content="$(cat)"; printf "\033]52;c;%s\a" "$(echo "$content" | base64 -w0)" }

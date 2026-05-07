@@ -163,7 +163,27 @@ gssh() {
     SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)" GPG_TTY="$(tty)" ssh "$@"
 }
 
-alias ccode='podman run --rm -ti --security-opt=label=disable -v $HOME/.claude:/root/.claude -v $HOME/.claude.json:/root/.claude.json -v $HOME/.kube/claude:/root/.kube/config -v $HOME/.gitconfig:/root/.gitconfig:ro -v $HOME/.config/jj:/root/.config/jj:ro -v $PWD:$PWD --workdir $PWD ccode bash -c "source ~/.bashrc && /root/.local/bin/claude \"\$@\"" ""'
+term-copy() { content="$(cat)"; printf "\033]52;c;%s\a" "$(echo "$content" | base64 -w0)" }
+
 alias gemini='podman run --rm -ti --security-opt=label=disable -v $HOME/.gemini:/root/.gemini -v $HOME/.gitconfig:/root/.gitconfig:ro -v $HOME/.config/jj:/root/.config/jj:ro -v $PWD:$PWD --workdir $PWD gemini bash -c "source ~/.bashrc && gemini \"\$@\"" ""'
 
-term-copy() { content="$(cat)"; printf "\033]52;c;%s\a" "$(echo "$content" | base64 -w0)" }
+ccode() {
+    if [[ "$WORKTREE" == "1" ]] && (test -d .jj || test -d ../.jj || test -d ../../.jj); then
+       temp="$(mktemp -d)"
+       tempname="$(basename $temp)"
+
+       jj workspace add "$temp/ccode-$tempname"
+       CCODE_PODMAN_OPTS=("-v" "${temp}:${temp}" "--workdir" "$temp/ccode-$tempname")
+       CCODE_ADDED_WS="ccode-$tempname"
+    fi
+    podman run --rm -ti --security-opt=label=disable \
+        -v $HOME/.claude:/root/.claude -v $HOME/.claude.json:/root/.claude.json -v $HOME/.kube/claude:/root/.kube/config \
+        -v $HOME/.gitconfig:/root/.gitconfig:ro -v $HOME/.config/jj:/root/.config/jj:ro \
+        -v $PWD:$PWD --workdir $PWD ${CCODE_PODMAN_OPTS:-} \
+        ccode bash -c "source ~/.bashrc && /root/.local/bin/claude \"\$@\"" "" "$@"
+
+    if [[ -n "$CCODE_ADDED_WS" ]]; then
+        jj workspace forget "$CCODE_ADDED_WS"
+    fi
+    
+}

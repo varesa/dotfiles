@@ -36,6 +36,13 @@ tp = ["util", "exec", "--", "bash", "-c", """
 jj tug && jj push
 """, ""]
 
+pulln = ["util", "exec", "--", "bash", "-c", """
+[[ -n "$(jj log -r 'latest(::@ & ~empty()) & trunk()')" ]] && on_trunk=1 || on_trunk=0
+jj pull
+[[ "$on_trunk" == "1" ]] && jj new -r 'trunk()'
+""", ""]
+
+
 [ui]
 default-command = ["util", "exec", "--", "bash", "-c", """
 jj st --no-pager

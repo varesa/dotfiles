@@ -32,25 +32,20 @@ temp() {
 }
 
 function eyaml {
-    if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet/hiera"; then
-        PUBKEY="/home/esav.fi/esa/workspace/puppet/hiera/keys/public_key.pkcs7.pem"
-    fi
-
-    if echo $PWD | grep -q "^/home/esa/repos/puppet/ppadmin"; then
-        PUBKEY="/home/esa/repos/puppet/ppadmin/keys/public_key.pkcs7.pem"
-    fi
-
     if echo $PWD | grep -q "^/home/esa/workspace/puppet/ppadmin"; then
         PUBKEY="/home/esa/workspace/puppet/ppadmin/keys/public_key.pkcs7.pem"
     fi
 
+    if echo $PWD | grep -q "^/home/esav.fi/esa/workspace/puppet"; then
+        PUBKEY="/home/esav.fi/esa/workspace/puppet/hiera/keys/public_key.pkcs7.pem"
+    fi
 
     if [[ "$1" == "edit" || "$1" == "encrypt" ]]; then
     	echo "Using pubkey $PUBKEY"
         oper=$1; shift
-        /usr/bin/eyaml $oper --pkcs7-public-key=$PUBKEY "$@"
+        ~/.local/bin/eyaml $oper --pkcs7-public-key=$PUBKEY "$@"
     else
-        /usr/bin/eyaml "$@"
+        ~/.local/bin/eyaml "$@"
     fi
 }
 

@@ -4,8 +4,8 @@
 # *1000/100 = *10
 mem_percent="$(($(awk '/MemTotal/ {print $2}' /proc/meminfo) * 10))"
 
-mem_high="$(($mem_percent * 50))"
-mem_max="$(($mem_percent * 75))"
+mem_high="$((mem_percent * 22))"
+mem_max="$((mem_percent * 33))"
 
 app_cleaned="$(echo $1 | sed 's/[^a-zA-Z]\+/_/g')"
 
